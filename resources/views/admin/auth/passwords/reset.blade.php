@@ -29,7 +29,7 @@
 
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/reset') }}">
         @csrf
-        <div class="mb-3">
+        <div class="mb-3 form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="useremail" class="form-label">Email</label>
             <input id="email" type="email" class="form-control" name="email" placeholder="Enter email">
             @if ($errors->has('email'))
@@ -39,27 +39,27 @@
             @endif
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="form-label">Password</label>
-            <input id="password" type="password" class="form-control" name="password" placeholder="Enter Password">
-            @if ($errors->has('password))
+            <input id="email" type="email" class="form-control" placeholder="Enter Password" name="email" value="{{ old('email') }}" autofocus>
+            @if ($errors->has('password'))
             <span class="help-block">
-
+                <strong>{{ $errors->first('password') }}</strong>
             </span>
             @endif
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}" mb-3">
             <label for="useremail" class="form-label">Confirm Password</label>
-            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Enter email">
+            <input id="password-confirm" type="password" class="form-control" placeholder="Confirm your Password" name="password_confirmation">
             @if ($errors->has('password_confirmation'))
             <span class="help-block">
-
+                <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
             @endif
         </div>
 
-        <div class="text-end">
+        <div class="mt-2 text-end">
             <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Reset password</button>
         </div>
 
@@ -68,3 +68,13 @@
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+

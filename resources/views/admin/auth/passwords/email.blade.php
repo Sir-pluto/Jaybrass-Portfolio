@@ -38,7 +38,7 @@
             @csrf
             <div class="mb-3">
                 <label for="useremail" class="form-label">Email</label>
-                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" placeholder="Enter email">
+                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Enter email">
                 @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
