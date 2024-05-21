@@ -9,6 +9,6 @@ class Tools extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Tools'
+        'tools'
     ];
 }

@@ -9,8 +9,8 @@ class Education extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'School',
-        'Degree',
-        'Year'
+        'school',
+        'degree',
+        'year'
     ];
 }

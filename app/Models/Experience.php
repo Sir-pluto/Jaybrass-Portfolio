@@ -9,8 +9,8 @@ class Experience extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Position',
-        'Duration',
-        'City'
+        'position',
+        'curation',
+        'city'
     ];
 }
