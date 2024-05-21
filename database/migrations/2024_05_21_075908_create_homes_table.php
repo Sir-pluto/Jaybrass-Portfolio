@@ -22,7 +22,7 @@ class CreateHomesTable extends Migration
             $table->string('years_of_experience')->nullable();
              $table->string('projects_completed')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

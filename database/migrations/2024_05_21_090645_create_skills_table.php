@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->text('skills')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

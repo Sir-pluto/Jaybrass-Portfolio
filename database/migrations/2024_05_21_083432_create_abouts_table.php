@@ -20,7 +20,7 @@ class CreateAboutsTable extends Migration
             $table->string('image')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

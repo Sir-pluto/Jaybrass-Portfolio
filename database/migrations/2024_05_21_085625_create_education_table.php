@@ -19,7 +19,7 @@ class CreateEducationTable extends Migration
             $table->string('degree')->nullable();
             $table->string('year')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

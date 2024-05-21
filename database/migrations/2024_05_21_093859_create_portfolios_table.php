@@ -18,7 +18,7 @@ class CreatePortfoliosTable extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

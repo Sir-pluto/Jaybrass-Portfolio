@@ -17,7 +17,7 @@ class CreateToolsTable extends Migration
             $table->id();
             $table->string('tools')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 

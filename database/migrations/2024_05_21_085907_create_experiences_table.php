@@ -19,7 +19,7 @@ class CreateExperiencesTable extends Migration
             $table->string('duration')->nullable();
             $table->string('city')->nullable();
             $table->timestamps();
-            $table->softDelete();
+            $table->softDeletes();
         });
     }
 
