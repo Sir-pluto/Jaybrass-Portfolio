@@ -10,7 +10,7 @@ class Experience extends Model
     use HasFactory;
     protected $fillable = [
         'position',
-        'curation',
+        'duration',
         'city'
     ];
 }

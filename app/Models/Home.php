@@ -14,6 +14,8 @@ class Home extends Model
         'description',
         'image',
         'slug',
+        'logo',
+        'favicon',
         'years_of_experience',
         'projects_completed'
     ];

@@ -19,8 +19,10 @@ class CreateHomesTable extends Migration
             $table->string('position')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
             $table->string('years_of_experience')->nullable();
-             $table->string('projects_completed')->nullable();
+            $table->string('projects_completed')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

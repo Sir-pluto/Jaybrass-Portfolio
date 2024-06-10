@@ -1,3 +1,9 @@
+@php
+$admin = Auth::guard('admin')->user();
+@endphp
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -7,7 +13,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Starter Page | Skote - Admin & Dashboard Template</title>
+    <title>Starter Page | SirJosh - Admin & Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -24,6 +30,7 @@
 </head>
 
 <body data-sidebar="dark">
+    @include('sweetalert::alert')
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
@@ -67,7 +74,7 @@
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
-                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
+                            <span class="d-none d-xl-inline-block ms-1" key="t-henry">Sir-Josh</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -77,7 +84,8 @@
                             <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            <a class="dropdown-item text-danger" href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                            <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">@csrf</form>
                         </div>
                     </div>
 
@@ -113,11 +121,20 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title" key="t-menu">Menu</li>
+                        <li>
+                            <a href="{{ url('/admin/home') }}" class="waves-effect">
+                                <i class="bx bx-home-circle"></i>
+                                <span key="t-dashboard">Admin Home</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title" key="t-menu">Website Layout and Settings</li>
 
                         <li>
-                            <a href="chat.html" class="waves-effect">
+                            <a href="{{ url('/admin/homeSettings') }}" class="waves-effect">
                                 <i class="bx bx-aperture"></i>
-                                <span key="t-chat">Site Settings</span>
+                                <span key="t-chat">Home Settings</span>
                             </a>
                         </li>
 
@@ -133,45 +150,52 @@
                                         <span key="t-about us">About Us</span>
                                     </a>
                                     <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="dashboard-saas.html" key="t-saas">
+                                        <li><a href="{{ url('/admin/about') }}" key="t-about">
                                                 <i class="bx bx-receipt"></i>
-                                                <span key="t-about"> About </span>
+                                                <span key="t-about">About</span>
                                             </a>
                                         </li>
-                                        <li><a href="dashboard-crypto.html" key="t-crypto">
+
+                                         <li><a href="{{ url('/admin/education') }}" key="t-education">
+                                                <i class="bx bx-receipt"></i>
+                                                <span key="t-education">Education</span>
+                                            </a>
+                                        </li>
+
+                                        <li><a href="{{ url('/admin/experience') }}" key="t-experience">
                                                 <i class="bx bx-store"></i>
-                                                <span key="t-experience"> Experience </span>
+                                                <span key="t-experience">Experience</span>
                                         </li>
-                                        <li><a href="dashboard-saas.html" key="t-saas">
+                                        <li><a href="{{ url('/admin/skills') }}" key="t-skills">
                                                 <i class="bx bx-file"></i>
-                                                <span key="t-skills"> Skills </span>
+                                                <span key="t-skills">Skills</span>
                                             </a>
                                         </li>
-                                        <li><a href="dashboard-crypto.html" key="t-crypto">
+                                        <li><a href="{{ url('/admin/tools') }}" key="t-tools">
                                                 <i class="bx bx-tone"></i>
-                                                <span key="t-tools"> Tools </span>
+                                                <span key="t-tools">Tools</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                
-                                <li><a href="dashboard-saas.html" key="t-saas">
+
+                                <li><a href="{{ url('/admin/services') }}" key="t-services">
                                         <i class="bx bx-briefcase-alt-2"></i>
-                                        <span key="t-services"> Services </span>
+                                        <span key="t-services">Services</span>
                                     </a>
                                 </li>
                                 <li><a href="javascript: void(0);">
                                         <i class="bx bx-task"></i>
-                                        <span> Portfolio </span>
+                                        <span>Portfolio</span>
                                     </a>
 
                                     <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="dashboard-saas.html" key="t-saas">
+                                        <li><a href="{{ url('/admin/projects') }}" key="t-projects">
                                                 <i class="bx bx-briefcase-alt"></i>
-                                                <Span key="t-project"> Project </Span>
+                                                <Span key="t-project">Projects</Span>
                                             </a>
                                         </li>
-                                        <li><a href="dashboard-blog.html" key="t-testimonial">
+                                        <li><a href="{{ url('/admin/testimonials') }}" key="t-testimonial">
                                                 <i class="bx bx-chat"></i>
                                                 <span key="t-testimonial">Testimonial</span>
                                             </a>
@@ -179,146 +203,85 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="dashboard-job.html" key="t-contact">
+                                <li><a href="{{ url('/admin/contacts') }}" key="t-contact">
                                         <i class="bx bxs-user-detail"></i>
                                         <span key="t-contact">Contact</span>
                                     </a>
                                 </li>
+
                             </ul>
 
                         </li>
-
-
-                        <!-- Sidebar -->
+                        <li>
+                            <a href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="waves-effect">
+                                <i class="bx bx-power-off"></i>
+                                <span key="t-logout">Logout</span>
+                            </a>
+                        </li>
                 </div>
+
+
+                <!-- Sidebar -->
             </div>
-            <!-- Left Sidebar End -->
+        </div>
+        <!-- Left Sidebar End -->
 
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
+            <div class="page-content">
+                <div class="container-fluid">
 
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Starter Page</h4>
+                    @yield('content')
 
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Utility</a></li>
-                                            <li class="breadcrumb-item active">Starter Page</li>
-                                        </ol>
-                                    </div>
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
 
-                                </div>
-                            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © Sir-Josh.
                         </div>
-                        <!-- end page title -->
-
-                    </div> <!-- container-fluid -->
-                </div>
-                <!-- End Page-content -->
-
-
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script> © Skote.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by Sir-Josh
-                                </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by Sir-Josh
                             </div>
                         </div>
                     </div>
-                </footer>
-            </div>
-            <!-- end main content-->
-
-        </div>
-        <!-- END layout-wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center px-3 py-4">
-
-                    <h5 class="m-0 me-2">Settings</h5>
-
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
                 </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
-                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
-                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
-                        <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
-                    </div>
-
-
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
+            </footer>
         </div>
-        <!-- /Right-bar -->
+        <!-- end main content-->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+    </div>
+    <!-- END layout-wrapper -->
 
-        <!-- JAVASCRIPT -->
-        <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
-        <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
-        <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
-        <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
 
-        <script src="{{ asset('assets/js/app.js')}}"></script>
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js')}}"></script>
+
+
+
+
+    <script src="{{ asset('assets/js/app.js')}}"></script>
 
 </body>
 
-<!-- Mirrored from themesbrand.com/skote/layouts/pages-starter.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 29 Feb 2024 21:06:43 GMT -->
 
 </html>
